@@ -1,6 +1,5 @@
 package com.sangi.controllers;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class UserControllers {
 	private UserDao userDao;
 	
 	public UserControllers() {
-	System.out.println("UserControllers INSTANTIATED");
+	System.out.println("UserController INSTANTIATED");
 }
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public ResponseEntity<?> registration(@RequestBody User user) {
@@ -35,7 +34,7 @@ public class UserControllers {
 			return new ResponseEntity<User>(user,HttpStatus.CREATED);
 		}
 		catch(Exception e) {
-			ErrorClazz error=new ErrorClazz(2,"Unable to register user details"+e.getMessage());
+			ErrorClazz error=new ErrorClazz(2,"Unable to register user details");
 			return new ResponseEntity<ErrorClazz>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -98,4 +97,5 @@ public class UserControllers {
 
 		
 	}
+	
                                    

@@ -1,11 +1,11 @@
 package com.sangi.configuration;
-
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-//web.xml file in project 1
-public class WebAppInitialiazer extends AbstractAnnotationConfigDispatcherServletInitializer{
-   public  WebAppInitialiazer() {
-      System.out.println("WEBAPPINITIALIZER is Instantiated");
-}
+
+public class WebAppInitialiazer extends AbstractAnnotationConfigDispatcherServletInitializer {
+	
+	 public  WebAppInitialiazer() {
+	      System.out.println("WEBAPPINITIALIAZER is Instantiated");
+	 }
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[]{DBConfiguration.class};
@@ -13,12 +13,15 @@ public class WebAppInitialiazer extends AbstractAnnotationConfigDispatcherServle
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[]{WebConfig.class};
+		return  new Class[]{WebConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
+		
 		return new String[]{"/"};
 	}
+	
 
 }
+
