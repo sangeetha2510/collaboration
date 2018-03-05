@@ -10,8 +10,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sangi.model.BlogComment;
 import com.sangi.model.BlogPost;
-
+import com.sangi.model.Notification;
 
 @Repository
 @Transactional
@@ -42,17 +43,42 @@ public class BlogPostDaoImpl implements BlogPostDao {
 		return blogPost;
 	}
 
-	@Override
 	public void blogApproved(int id) {
-		// TODO Auto-generated method stub
-		
+		Session session=sessionFactory.getCurrentSession();
+		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
+		blogPost.setApproved(true);
+		session.update(blogPost);
+		Notification notification=new Notification();
+		notification.setBlogTitle(blogPost.getBlogTitle());
+		notification.setEmail(blogPost.getPostedBy().getEmail());
+		notification.setApprovalStatus("Approved");
+		session.save(notification);
 	}
 
-	@Override
 	public void blogRejected(int id, String rejectionReason) {
-		// TODO Auto-generated method stub
+		Session session=sessionFactory.getCurrentSession();
+		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
+		Notification notification=new Notification();
+		notification.setBlogTitle(blogPost.getBlogTitle());
+		notification.setEmail(blogPost.getPostedBy().getEmail());
+		notification.setApprovalStatus("Rejected");
+		notification.setRejectionReason(rejectionReason);
+		session.save(notification);
+		session.delete(blogPost);
+	}
+
+	public void addBlogComment(BlogComment blogComment) {
+		Session session=sessionFactory.getCurrentSession();
+		session.save(blogComment);
 		
 	}
 
-	
+	public List<BlogComment> getAllBlogComments(int blogPostId) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogComment where blogPost.id=?");
+		query.setInteger(0, blogPostId);
+		List<BlogComment> blogComments=query.list();
+		return blogComments;
+	}
+
 }
