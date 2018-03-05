@@ -17,6 +17,7 @@ import com.sangi.model.BlogPost;
 import com.sangi.model.BlogPostLikes;
 import com.sangi.model.Job;
 import com.sangi.model.Notification;
+import com.sangi.model.ProfilePicture;
 import com.sangi.model.User;
 
 
@@ -37,7 +38,7 @@ public class DBConfiguration {
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
-		Class classes[]=new Class[]{User.class,Job.class,BlogPost.class,BlogPostLikes.class,Notification.class,BlogComment.class};
+		Class classes[]=new Class[]{User.class,Job.class,BlogPost.class,BlogPostLikes.class,Notification.class,BlogComment.class,ProfilePicture.class};
 	    return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 	}
 	@Bean
