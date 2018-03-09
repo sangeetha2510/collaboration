@@ -14,13 +14,12 @@ import com.sangi.dao.UserDao;
 import com.sangi.model.ErrorClazz;
 import com.sangi.model.User;
 
-
 @RestController
-public class UserControllers {
+public class UserController {
 	@Autowired
 	private UserDao userDao;
 	
-	public UserControllers() {
+	public UserController() {
 	System.out.println("UserController INSTANTIATED");
 }
 	@RequestMapping(value="/register",method=RequestMethod.POST)
@@ -98,4 +97,3 @@ public class UserControllers {
 		
 	}
 	
-                                   

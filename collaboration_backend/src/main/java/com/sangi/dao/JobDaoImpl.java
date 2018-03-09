@@ -24,7 +24,6 @@ public class JobDaoImpl implements JobDao {
 
 	}
 
-	@Override
 	public List<Job> getAllJobs() {
 		Session session=sessionFactory.getCurrentSession();
 		//HQL - from Job
@@ -34,7 +33,6 @@ public class JobDaoImpl implements JobDao {
 		return jobs;
 	}
 
-	@Override
 	public Job getJob(int id) {
 		Session session=sessionFactory.getCurrentSession();
 		//select * from job_s180233 where id=?
